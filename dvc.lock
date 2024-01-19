@@ -1,0 +1,66 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/MoviesRecommendationSystemMLops/pipeline/stage01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: 078b6e20de956e0c60e07df46b938634
+      size: 863
+    - path: src/MoviesRecommendationSystemMLops/pipeline/stage01_data_ingestion.py
+      hash: md5
+      md5: d0a73ad319d2c4fa130c0479716fab03
+      size: 997
+    outs:
+    - path: artifacts/data_ingestion/tmdb_5000_credits.csv
+      hash: md5
+      md5: 6c5e0e12bfbc527697d7977d86b97ed4
+      size: 40044293
+    - path: artifacts/data_ingestion/tmdb_5000_movies.csv
+      hash: md5
+      md5: 64346a71897b5741d553d34b86088603
+      size: 5698602
+  data_validation:
+    cmd: python src/MoviesRecommendationSystemMLops/pipeline/stage02_data_validation.py
+    deps:
+    - path: src/MoviesRecommendationSystemMLops/pipeline/stage01_data_ingestion.py
+      hash: md5
+      md5: d0a73ad319d2c4fa130c0479716fab03
+      size: 997
+    - path: src/MoviesRecommendationSystemMLops/pipeline/stage02_data_validation.py
+      hash: md5
+      md5: afe04e0c2f8714f165313600afbcaeef
+      size: 923
+    outs:
+    - path: artifacts/data_validation/data.csv
+      hash: md5
+      md5: 862d4eea5e22273271f5f77ec013a084
+      size: 2322983
+    - path: artifacts/data_validation/status.txt
+      hash: md5
+      md5: 86e6a2f694c57a675b3e2da6b95ff9ba
+      size: 23
+  vectorization:
+    cmd: python src/MoviesRecommendationSystemMLops/pipeline/stage03_vectorization.py
+    deps:
+    - path: src/MoviesRecommendationSystemMLops/pipeline/stage01_data_ingestion.py
+      hash: md5
+      md5: d0a73ad319d2c4fa130c0479716fab03
+      size: 997
+    - path: src/MoviesRecommendationSystemMLops/pipeline/stage02_data_validation.py
+      hash: md5
+      md5: afe04e0c2f8714f165313600afbcaeef
+      size: 923
+    - path: src/MoviesRecommendationSystemMLops/pipeline/stage03_vectorization.py
+      hash: md5
+      md5: 61f2bb65ed8038cbf5f0af3a0fd6e402
+      size: 888
+    outs:
+    - path: artifacts/model_trainer/movies.joblib
+      hash: md5
+      md5: bd6eac999f7503468c4bcc63d0d76311
+      size: 2216683
+    - path: artifacts/model_trainer/similarity.joblib
+      hash: md5
+      md5: de5eb6901301cab3d924e44749b442d9
+      size: 184781329

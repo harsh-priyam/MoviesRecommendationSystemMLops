@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommender System</title>
+</head>
+<body>
+    <h1>Movie Recommender System</h1>
+    <form method="post" action="/">
+        <label for="movie_name">Enter any movie to get similar movies!</label>
+        <input type="text" id="movie_name" name="movie_name" required>
+        <button type="submit">Recommend</button>
+    </form>
+
+    {% if names %}
+        <div>
+            <p>{{ names[0] }}</p>
+            <img src="{{ posters[0] }}" alt="{{ names[0] }}">
+        </div>
+        <div>
+            <p>{{ names[1] }}</p>
+            <img src="{{ posters[1] }}" alt="{{ names[1] }}">
+        </div>
+        <div>
+            <p>{{ names[2] }}</p>
+            <img src="{{ posters[2] }}" alt="{{ names[2] }}">
+        </div>
+        <div>
+            <p>{{ names[3] }}</p>
+            <img src="{{ posters[3] }}" alt="{{ names[3] }}">
+        </div>
+        <div>
+            <p>{{ names[4] }}</p>
+            <img src="{{ posters[4] }}" alt="{{ names[4] }}">
+        </div>
+    {% endif %}
+</body>
+</html>

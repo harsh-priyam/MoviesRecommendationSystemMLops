@@ -1,0 +1,21 @@
+artifacts_root: artifacts
+
+data_ingestion:
+    root_dir: artifacts/data_ingestion
+    movies_URL: https://github.com/harsh-priyam/Data/raw/main/tmdb_5000_movies.zip
+    credits_URL: https://github.com/harsh-priyam/Data/raw/main/tmdb_5000_credits.zip
+    movies_data_file: artifacts/data_ingestion/movies.zip
+    credits_data_file: artifacts/data_ingestion/credits.zip
+    unzip_dir: artifacts/data_ingestion
+
+data_validation:
+    root_dir: artifacts/data_validation
+    unzip_movies_dir: artifacts/data_ingestion/tmdb_5000_movies.csv
+    unzip_credits_dir: artifacts/data_ingestion/tmdb_5000_credits.csv
+    STATUS_FILE: artifacts/data_validation/status.txt
+
+model_trainer:
+    root_dir: artifacts/model_trainer
+    data_path: artifacts/data_validation/data.csv
+    movies_model_name: movies.joblib
+    similarity_model_name: similarity.joblib

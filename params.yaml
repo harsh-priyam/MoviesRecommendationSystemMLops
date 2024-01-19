@@ -1,0 +1,2 @@
+CountVectorizer:
+  max_features: 5000

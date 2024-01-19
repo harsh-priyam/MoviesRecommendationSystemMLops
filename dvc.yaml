@@ -1,0 +1,28 @@
+stages: 
+    data_ingestion:
+      cmd: python src/MoviesRecommendationSystemMLops/pipeline/stage01_data_ingestion.py
+      deps:
+        - src/MoviesRecommendationSystemMLops/pipeline/stage01_data_ingestion.py
+        - config/config.yaml
+      outs:
+        - artifacts/data_ingestion/tmdb_5000_movies.csv
+        - artifacts/data_ingestion/tmdb_5000_credits.csv
+
+    data_validation:
+      cmd: python src/MoviesRecommendationSystemMLops/pipeline/stage02_data_validation.py
+      deps:
+        - src/MoviesRecommendationSystemMLops/pipeline/stage01_data_ingestion.py
+        - src/MoviesRecommendationSystemMLops/pipeline/stage02_data_validation.py
+      outs:
+        - artifacts/data_validation/status.txt  
+        - artifacts/data_validation/data.csv  
+
+    vectorization:
+      cmd: python src/MoviesRecommendationSystemMLops/pipeline/stage03_vectorization.py
+      deps:
+        - src/MoviesRecommendationSystemMLops/pipeline/stage01_data_ingestion.py
+        - src/MoviesRecommendationSystemMLops/pipeline/stage02_data_validation.py
+        - src/MoviesRecommendationSystemMLops/pipeline/stage03_vectorization.py
+      outs:
+        - artifacts/model_trainer/movies.joblib
+        - artifacts/model_trainer/similarity.joblib
